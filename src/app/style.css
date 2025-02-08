@@ -1,0 +1,47 @@
+.box-countdown {
+    width: 50%;
+}
+
+.box-countdown-item {
+    background-color: #a47551;
+}
+
+.card-resepsi {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 768px) {
+    .box-countdown {
+        width: 90%;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+.animated-card {
+    opacity: 0; /* Mulai dalam keadaan tidak terlihat */
+    animation: zoomIn 1s ease-in-out forwards;
+}
+
+button.btn-secondary:active {
+    transform: scale(0.95);
+}
+
+button.btn-secondary {
+    transition: background-color 0.3s ease-in-out;
+}
+
+button.btn-secondary.copied {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+  
