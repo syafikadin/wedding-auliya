@@ -22,6 +22,18 @@ export default function Home() {
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 3000);
@@ -99,7 +111,7 @@ export default function Home() {
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}></div>
 
         <div className="text-center p-4 position-relative" style={{ zIndex: 1 }}>
-          <p className="mb-1">The Wedding Of</p>
+          <h2 className="mb-1 text-butler">The Wedding Of</h2>
           <h1 className="fw-bold" style={{ fontFamily: "cursive" }}>Auliya & Suami</h1>
           <p className="mb-3">Kamis, 13 Februari 2025</p>
           <p className="mb-3">Kpd Bpk/Ibu/Saudara/i</p>
@@ -126,7 +138,7 @@ export default function Home() {
       >
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}></div>
         <div className="p-4 position-relative" style={{ zIndex: 1 }}>
-          <h2>The Wedding Of</h2>
+          <h2 className="text-butler">The Wedding Of</h2>
           <h1 className="fw-bold" style={{ fontFamily: "cursive" }}>Auliya & Suami</h1>
         </div>
       </div>
@@ -157,14 +169,14 @@ export default function Home() {
         style={{
           backgroundColor: "#e8d4cc",
         }}>
-        <h2 className="fw-bold mb-5">We Are Getting Married</h2>
+        <h2 className="fw-bold mb-5 text-brown text-butler">We Are Getting Married</h2>
 
         {/* Mempelai Wanita */}
         <div className="d-flex align-items-center justify-content-md-start ms-md-5 flex-row gap-3 mb-5">
           <img src="img/mempelai1.png" alt="Mempelai Wanita" className="img-fluid rounded-circle" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
           <div className="text-center">
-            <h1 className="fw-bold">Auliya</h1>
-            <p className="text-muted">Putri dari Bpk. Ahmad & Ibu Siti</p>
+            <h1 className="fw-bold text-brown">Auliya</h1>
+            <p className="text-muted text-brown">Putri dari Bpk. Ahmad & Ibu Siti</p>
             <button className="btn btn-secondary"><i className="bi bi-instagram"></i> @auliyah</button>
           </div>
         </div>
@@ -173,8 +185,8 @@ export default function Home() {
         <div className="d-flex align-items-center justify-content-md-start me-md-5 flex-row-reverse gap-3">
           <img src="img/mempelai2.png" alt="Mempelai Pria" className="img-fluid rounded-circle" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
           <div className="text-center">
-            <h1 className="fw-bold">Suami</h1>
-            <p className="text-muted">Putra dari Bpk. Budi & Ibu Ani</p>
+            <h1 className="fw-bold text-brown">Suami</h1>
+            <p className="text-muted text-brown">Putra dari Bpk. Budi & Ibu Ani</p>
             <button className="btn btn-secondary"><i className="bi bi-instagram"></i> @suami</button>
           </div>
         </div>
@@ -190,7 +202,7 @@ export default function Home() {
           borderRadius: "15px",
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
         }}>
-          <h2 className="fw-bold">Count The Date</h2>
+          <h2 className="fw-bold text-brown text-butler">Count The Date</h2>
           <p className="text-muted">Siang dan malam berganti begitu cepat, di antara saat-saat mendebarkan yang belum pernah kami rasakan sebelumnya. Kami nantikan kehadiran para keluarga dan sahabat, untuk menjadi saksi ikrar janji suci kami di hari yang bahagia.</p>
 
           {/* Countdown Timer */}
@@ -294,7 +306,7 @@ export default function Home() {
       <div className="d-flex flex-column align-items-center justify-content-center text-center py-5" style={{ background: "#a47551" }}>
         <div className="card p-4 shadow" style={{ maxWidth: "400px", background: "#e8d4cc" }}>
           <img src="./img/flower1.jpg" alt="Flower" className="img-fluid mb-3" />
-          <h4 className="mb-3">Amplop Digital</h4>
+          <h1 className="mb-3 text-brown text-butler">Amplop Digital</h1>
           <p className="text-muted">
             Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
           </p>
@@ -329,7 +341,7 @@ export default function Home() {
               }}>
 
                 <div className="position-relative text-white">
-                  <h1 className="fw-bold">Ucapan & Doa</h1>
+                  <h1 className="text-butler">Ucapan & Doa</h1>
                   <div className="card">
                     <p className="fw-italic">“Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day”</p>
                   </div>
@@ -343,7 +355,7 @@ export default function Home() {
 
       {/* Section 8 - Wedding Gallery */}
       <div className="d-flex flex-column align-items-center text-center py-5" style={{ background: "#a47551" }}>
-        <h1 className="text-white mb-4">Wedding Gallery</h1>
+        <h1 className="text-white mb-4 text-butler">Wedding Gallery</h1>
         <div className="d-flex flex-row flex-wrap justify-content-center gap-3">
           <img src="./img/mempelai1.png" alt="Mempelai 1" className="img-fluid" style={{ maxWidth: "300px" }} />
           <img src="./img/mempelai2.png" alt="Mempelai 2" className="img-fluid" style={{ maxWidth: "300px" }} />
@@ -378,12 +390,12 @@ export default function Home() {
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}></div>
 
         <div className="position-relative text-white p-4" style={{ maxWidth: "600px", zIndex: 2 }}>
-          <h1 className="fw-bold">Terima Kasih</h1>
+          <h1 className="text-butler">Terima Kasih</h1>
           <p className="mt-3">
             Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila Bapak/Ibu/Saudara/i,
             berkenan hadir dan memberikan do’a restu kepada kami.
           </p>
-          <h5 className="mt-4 fw-bold">KAMI YANG BERBAHAGIA</h5>
+          <h6 className="mt-4 fw-bold text-butler">KAMI YANG BERBAHAGIA</h6>
           <h1 className="fw-bold" style={{ fontFamily: "cursive" }}>Auliya & Suami</h1>
         </div>
       </div>

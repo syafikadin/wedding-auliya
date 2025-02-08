@@ -45,3 +45,17 @@ button.btn-secondary.copied {
     border-color: #28a745 !important;
 }
   
+.text-brown{
+    color: #a47551;
+}
+
+@font-face {
+    font-family: 'Butler';
+    src: url("/fonts/Butler.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text-butler {
+    font-family: "Butler", serif;
+}
