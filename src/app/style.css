@@ -10,9 +10,22 @@
     background-color: rgba(0, 0, 0, 1);
 }
 
+.button-brown {
+    background-color: #a47551;
+    color: white;
+}
+
 @media (max-width: 768px) {
     .box-countdown {
         width: 90%;
+    }
+
+    .bride-1{
+        margin-left: 20px;
+    }
+
+    .bride-2{
+        margin-right: 20px;
     }
 }
 
@@ -32,15 +45,19 @@
     animation: zoomIn 1s ease-in-out forwards;
 }
 
-button.btn-secondary:active {
+button.button-brown {
+    pointer-events: auto;
+}
+
+button.button-brown:active {
     transform: scale(0.95);
 }
 
-button.btn-secondary {
+button.button-brown {
     transition: background-color 0.3s ease-in-out;
 }
 
-button.btn-secondary.copied {
+button.button-brown.copied {
     background-color: #28a745 !important;
     border-color: #28a745 !important;
 }
@@ -58,4 +75,20 @@ button.btn-secondary.copied {
 
 .text-butler {
     font-family: "Butler", serif;
+}
+
+
+body {
+    font-family: 'Lora', serif; /* Untuk teks utama */
+}
+
+.wedding-title {
+    font-family: 'Great Vibes', cursive; /* Untuk nama pengantin */
+    font-size: 50px;
+}
+
+.heading {
+    font-family: 'Playfair Display', serif; /* Untuk heading utama */
+    font-weight: 700;
+    font-size: 30px;
 }

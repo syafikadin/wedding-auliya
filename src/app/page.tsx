@@ -41,9 +41,26 @@ export default function Home() {
   }, []);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText("1234 5678 9101");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const accountNumber = "1230914407";
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(accountNumber).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    } else {
+      // Fallback untuk browser yang tidak mendukung navigator.clipboard
+      const textArea = document.createElement("textarea");
+      textArea.value = accountNumber;
+      textArea.style.position = "absolute";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   useEffect(() => {
@@ -69,8 +86,7 @@ export default function Home() {
     return () => clearInterval(countdown);
   }, []);
 
-  const googleCalendarLink = `https://www.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Auliya+%26+Suami&dates=20250213T000000Z/20250213T235900Z&details=Kami+mengundang+Anda+untuk+hadir+di+hari+bahagia+kami!&location=Lokasi+Pernikahan`;
-
+  const googleCalendarLink = `https://www.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Auliya+%26+Alvinuril&dates=20250213T020000Z/20250213T070000Z&details=Kami+mengundang+Anda+untuk+hadir+di+hari+bahagia+kami!&location=Jl.+Sidomukti+Ringinsari+RT.016+RW.003+Sumbermanjing+Wetan+Malang`;
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -112,7 +128,7 @@ export default function Home() {
 
         <div className="text-center p-4 position-relative" style={{ zIndex: 1 }}>
           <h2 className="mb-1 text-butler">The Wedding Of</h2>
-          <h1 className="fw-bold" style={{ fontFamily: "cursive" }}>Auliya & Suami</h1>
+          <h1 className="fw-bold wedding-title">Auliyah & Alvinuril</h1>
           <p className="mb-3">Kamis, 13 Februari 2025</p>
           <p className="mb-3">Kpd Bpk/Ibu/Saudara/i</p>
           <button className="btn btn-light" onClick={handleOpen}>
@@ -130,7 +146,7 @@ export default function Home() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "scroll", // Ubah dari 'fixed' ke 'scroll'
-          minHeight: "100vh",
+          height: "80vh",
           width: "100%",
           position: "relative",
           zIndex: 1,
@@ -138,20 +154,21 @@ export default function Home() {
       >
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}></div>
         <div className="p-4 position-relative" style={{ zIndex: 1 }}>
-          <h2 className="text-butler">The Wedding Of</h2>
-          <h1 className="fw-bold" style={{ fontFamily: "cursive" }}>Auliya & Suami</h1>
+          <h2 className="heading-title">The Wedding Of</h2>
+          <h1 className="fw-bold wedding-title">Auliyah & Alvinuril</h1>
         </div>
       </div>
 
 
       {/* Section 2 - Caption Islami */}
       <div
-        className="d-flex align-items-center justify-content-center vh-100 text-white text-center"
+        className="d-flex align-items-center justify-content-center text-white text-center"
         style={{
           backgroundColor: "#a47551",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
+          height: "80vh",
           position: "relative",
           zIndex: 1,
         }}
@@ -169,25 +186,25 @@ export default function Home() {
         style={{
           backgroundColor: "#e8d4cc",
         }}>
-        <h2 className="fw-bold mb-5 text-brown text-butler">We Are Getting Married</h2>
+        <h1 className="mb-5 text-brown heading">We Are Getting Married</h1>
 
         {/* Mempelai Wanita */}
-        <div className="d-flex align-items-center justify-content-md-start ms-md-5 flex-row gap-3 mb-5">
-          <img src="img/mempelai1.png" alt="Mempelai Wanita" className="img-fluid rounded-circle" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
+        <div className="d-flex align-items-center justify-content-md-start ms-md-5 flex-row gap-3 mb-5 bride-1">
+          <img src="img/mba_aul.jpeg" alt="Mempelai Wanita" className="img-fluid" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
           <div className="text-center">
-            <h1 className="fw-bold text-brown">Auliya</h1>
-            <p className="text-muted text-brown">Putri dari Bpk. Ahmad & Ibu Siti</p>
-            <button className="btn btn-secondary"><i className="bi bi-instagram"></i> @auliyah</button>
+            <h2 className="fw-bold text-brown">Zairotul Auliyah</h2>
+            <p className="text-muted text-brown">Putri dari Alm. Bpk. Muhabi & Ibu Suwarsih</p>
+            <a href="https://www.instagram.com/_auliyahpg" className="btn btn-secondary"><i className="bi bi-instagram"></i> @_auliyahpg</a>
           </div>
         </div>
 
         {/* Mempelai Pria */}
-        <div className="d-flex align-items-center justify-content-md-start me-md-5 flex-row-reverse gap-3">
-          <img src="img/mempelai2.png" alt="Mempelai Pria" className="img-fluid rounded-circle" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
+        <div className="d-flex align-items-center justify-content-md-start me-md-5 flex-row-reverse gap-3 bride-2">
+          <img src="img/mas_alvin.jpeg" alt="Mempelai Pria" className="img-fluid" style={{ width: "200px", height: "200px", objectFit: "cover" }} />
           <div className="text-center">
-            <h1 className="fw-bold text-brown">Suami</h1>
-            <p className="text-muted text-brown">Putra dari Bpk. Budi & Ibu Ani</p>
-            <button className="btn btn-secondary"><i className="bi bi-instagram"></i> @suami</button>
+            <h2 className="fw-bold text-brown">Alvinuril Nezar Patria</h2>
+            <p className="text-muted text-brown">Putra dari Bpk. Rachmanur Affan & Ibu Umi Narsih</p>
+            <a href="https://www.instagram.com/alvinurilnp" className="btn btn-secondary"><i className="bi bi-instagram"></i> @alvinurilnp</a>
           </div>
         </div>
       </div>
@@ -202,7 +219,7 @@ export default function Home() {
           borderRadius: "15px",
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
         }}>
-          <h2 className="fw-bold text-brown text-butler">Count The Date</h2>
+          <h2 className="text-brown heading">Count The Date</h2>
           <p className="text-muted">Siang dan malam berganti begitu cepat, di antara saat-saat mendebarkan yang belum pernah kami rasakan sebelumnya. Kami nantikan kehadiran para keluarga dan sahabat, untuk menjadi saksi ikrar janji suci kami di hari yang bahagia.</p>
 
           {/* Countdown Timer */}
@@ -226,7 +243,7 @@ export default function Home() {
           </div>
 
           {/* Tombol Tambah ke Google Calendar */}
-          <a href={googleCalendarLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-4">
+          <a href={googleCalendarLink} target="_blank" rel="noopener noreferrer" className="btn button-brown mt-4">
             <i className="bi bi-calendar-event"></i> Tambahkan ke Google Calendar
           </a>
         </div>
@@ -244,7 +261,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             {/* Akad Nikah */}
-            <div className="col-md-8 col-sm-10 mb-4">
+            <div className="col-md-8 col-sm-10">
               <div className="card-resepsi p-4 shadow-sm position-relative" style={{
                 borderRadius: "15px",
                 backgroundImage: "url('img/flower1.jpg')",
@@ -263,41 +280,16 @@ export default function Home() {
                   <h3 className="fw-bold">Akad Nikah</h3>
                   <p>Kamis, 13 Februari 2025</p>
                   <p>Pukul: 09:00 WIB</p>
-                  <p>Alamat: Masjid Agung, Kota XYZ</p>
-                  <a href="https://goo.gl/maps/example" target="_blank" className="btn btn-primary">
+                  <p>Alamat: Jl. Sidomukti Ringinsari RT.016 RW.003 Sumbermanjing Wetan Malang</p>
+                  <a href="https://www.google.com/maps?q=Jl.+Sidomukti+Ringinsari+RT.016+RW.003+Sumbermanjing+Wetan,+Malang"
+                    target="_blank"
+                    className="btn button-brown">
                     <i className="bi bi-geo-alt"></i> Lihat Lokasi
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* Resepsi */}
-            <div className="col-md-8 col-sm-10 mb-4">
-              <div className="card-resepsi p-4 shadow-sm position-relative" style={{
-                borderRadius: "15px",
-                backgroundImage: "url('img/flower1.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                overflow: "hidden",
-              }}>
-                {/* Overlay Gelap */}
-                <div className="position-absolute top-0 start-0 w-100 h-100" style={{
-                  backgroundColor: "rgba(0, 0, 0, 0.6)",
-                  borderRadius: "15px",
-                }}></div>
-
-                <div className="position-relative text-white">
-                  <i className="bi bi-balloon-heart fs-1"></i>
-                  <h3 className="fw-bold">Resepsi</h3>
-                  <p>Kamis, 13 Februari 2025</p>
-                  <p>Pukul: 19:00 WIB</p>
-                  <p>Alamat: Gedung Serba Guna, Kota XYZ</p>
-                  <a href="https://goo.gl/maps/example" target="_blank" className="btn btn-primary">
-                    <i className="bi bi-geo-alt"></i> Lihat Lokasi
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -306,21 +298,25 @@ export default function Home() {
       <div className="d-flex flex-column align-items-center justify-content-center text-center py-5" style={{ background: "#a47551" }}>
         <div className="card p-4 shadow" style={{ maxWidth: "400px", background: "#e8d4cc" }}>
           <img src="./img/flower1.jpg" alt="Flower" className="img-fluid mb-3" />
-          <h1 className="mb-3 text-brown text-butler">Amplop Digital</h1>
+          <h1 className="mb-3 text-brown heading">Amplop Digital</h1>
           <p className="text-muted">
             Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
           </p>
-          <button className="btn btn-primary mt-3" onClick={() => setShowBankDetails(!showBankDetails)}>
+          <button className="btn button-brown mt-3" onClick={() => setShowBankDetails(!showBankDetails)}>
             Kirim Amplop
           </button>
         </div>
 
         {showBankDetails && (
           <div className="card mt-4 p-4 shadow animated-card" style={{ maxWidth: "400px", background: "#e8d4cc" }}>
-            <img src="./img/logo_bri.svg" alt="Bank BRI" className="img-fluid mb-3" />
-            <h5>No. Rekening: 1234 5678 9101</h5>
-            <p className="text-muted">a.n. Nama Penerima</p>
-            <button className={`btn btn-secondary ${copied ? "copied" : ""}`} onClick={copyToClipboard}>
+            <img src="./img/logo_bca.png" alt="Bank BRI" className="img-fluid mb-3" />
+            <h5>No. Rekening: 1230914407</h5>
+            <p className="text-muted">a.n. Zairotul Auliya</p>
+            <button
+              className={`btn button-brown ${copied ? "copied" : ""}`}
+              onClick={copyToClipboard}
+              onTouchStart={copyToClipboard}
+            >
               {copied ? "Berhasil Disalin" : "Salin No. Rekening"}
             </button>
           </div>
@@ -341,7 +337,7 @@ export default function Home() {
               }}>
 
                 <div className="position-relative text-white">
-                  <h1 className="text-butler">Ucapan & Doa</h1>
+                  <h1 className="heading mb-4">Ucapan & Doa</h1>
                   <div className="card">
                     <p className="fw-italic">“Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day”</p>
                   </div>
@@ -355,10 +351,10 @@ export default function Home() {
 
       {/* Section 8 - Wedding Gallery */}
       <div className="d-flex flex-column align-items-center text-center py-5" style={{ background: "#a47551" }}>
-        <h1 className="text-white mb-4 text-butler">Wedding Gallery</h1>
+        <h1 className="text-white mb-4 heading">Wedding Gallery</h1>
         <div className="d-flex flex-row flex-wrap justify-content-center gap-3">
-          <img src="./img/mempelai1.png" alt="Mempelai 1" className="img-fluid" style={{ maxWidth: "300px" }} />
-          <img src="./img/mempelai2.png" alt="Mempelai 2" className="img-fluid" style={{ maxWidth: "300px" }} />
+          <img src="./img/mba_aul.jpeg" alt="Mempelai 1" className="img-fluid" style={{ height: "250px", width: "180px" }} />
+          <img src="./img/mas_alvin.jpeg" alt="Mempelai 2" className="img-fluid" style={{ height: "250px", width: "180px" }} />
         </div>
       </div>
 
@@ -390,13 +386,13 @@ export default function Home() {
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}></div>
 
         <div className="position-relative text-white p-4" style={{ maxWidth: "600px", zIndex: 2 }}>
-          <h1 className="text-butler">Terima Kasih</h1>
+          <h1 className="heading">Terima Kasih</h1>
           <p className="mt-3">
             Merupakan suatu kebahagiaan dan kehormatan bagi kami, apabila Bapak/Ibu/Saudara/i,
             berkenan hadir dan memberikan do’a restu kepada kami.
           </p>
           <h6 className="mt-4 fw-bold text-butler">KAMI YANG BERBAHAGIA</h6>
-          <h1 className="fw-bold" style={{ fontFamily: "cursive" }}>Auliya & Suami</h1>
+          <h1 className="fw-bold wedding-title" >Auliyah & Alvinuril</h1>
         </div>
       </div>
 
