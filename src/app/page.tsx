@@ -281,7 +281,7 @@ export default function Home() {
                   <p>Kamis, 13 Februari 2025</p>
                   <p>Pukul: 09:00 WIB</p>
                   <p>Alamat: Jl. Sidomukti Ringinsari RT.016 RW.003 Sumbermanjing Wetan Malang</p>
-                  <a href="https://www.google.com/maps?q=Jl.+Sidomukti+Ringinsari+RT.016+RW.003+Sumbermanjing+Wetan,+Malang"
+                  <a href="https://maps.app.goo.gl/VGbpEDLFuiP2eab57?g_st=awb"
                     target="_blank"
                     className="btn button-brown">
                     <i className="bi bi-geo-alt"></i> Lihat Lokasi
