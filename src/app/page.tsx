@@ -155,7 +155,7 @@ export default function Home() {
         <div className="position-absolute top-0 start-0 w-100 h-100" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}></div>
         <div className="p-4 position-relative" style={{ zIndex: 1 }}>
           <h2 className="heading-title">The Wedding Of</h2>
-          <h1 className="fw-bold wedding-title">Auliyah & Alvinuril</h1>
+          <h1 className="wedding-title">Auliyah & Alvinuril</h1>
         </div>
       </div>
 
