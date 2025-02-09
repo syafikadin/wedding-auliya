@@ -128,7 +128,7 @@ export default function Home() {
 
         <div className="text-center p-4 position-relative" style={{ zIndex: 1 }}>
           <h2 className="mb-1 text-butler">The Wedding Of</h2>
-          <h1 className="fw-bold wedding-title">Auliyah & Alvinuril</h1>
+          <h1 className="wedding-title">Auliyah & Alvinuril</h1>
           <p className="mb-3">Kamis, 13 Februari 2025</p>
           <p className="mb-3">Kpd Bpk/Ibu/Saudara/i</p>
           <button className="btn btn-light" onClick={handleOpen}>
@@ -286,6 +286,7 @@ export default function Home() {
                     className="btn button-brown">
                     <i className="bi bi-geo-alt"></i> Lihat Lokasi
                   </a>
+
                 </div>
               </div>
             </div>
