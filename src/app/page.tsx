@@ -41,7 +41,7 @@ export default function Home() {
   }, []);
 
   const copyToClipboard = () => {
-    const accountNumber = "1230914407";
+    const accountNumber = "3160142251";
 
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(accountNumber).then(() => {
@@ -310,9 +310,9 @@ export default function Home() {
 
         {showBankDetails && (
           <div className="card mt-4 p-4 shadow animated-card" style={{ maxWidth: "400px", background: "#e8d4cc" }}>
-            <img src="./img/logo_bca.png" alt="Bank BRI" className="img-fluid mb-3" />
-            <h5>No. Rekening: 1230914407</h5>
-            <p className="text-muted">a.n. Zairotul Auliya</p>
+            <img src="./img/logo_bca.png" alt="Bank BCA" className="img-fluid mb-3" />
+            <h5>No. Rekening: 3160142251</h5>
+            <p className="text-muted">a.n. Alvinuril Nezar Patria</p>
             <button
               className={`btn button-brown ${copied ? "copied" : ""}`}
               onClick={copyToClipboard}
