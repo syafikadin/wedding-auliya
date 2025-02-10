@@ -14,7 +14,7 @@ export default function Home() {
   });
   const [showBankDetails, setShowBankDetails] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
   const images = [
     "/img/images1.jpg",
     "/img/images2.jpg",
@@ -40,13 +40,11 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const copyToClipboard = () => {
-    const accountNumber = "3160142251";
-
+  const copyToClipboard = (accountNumber: any) => {
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(accountNumber).then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        setCopied(accountNumber);
+        setTimeout(() => setCopied(null), 2000);
       });
     } else {
       // Fallback untuk browser yang tidak mendukung navigator.clipboard
@@ -58,8 +56,8 @@ export default function Home() {
       textArea.select();
       document.execCommand("copy");
       document.body.removeChild(textArea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setCopied(accountNumber);
+      setTimeout(() => setCopied(null), 2000);
     }
   };
 
@@ -309,17 +307,53 @@ export default function Home() {
         </div>
 
         {showBankDetails && (
-          <div className="card mt-4 p-4 shadow animated-card" style={{ maxWidth: "400px", background: "#e8d4cc" }}>
-            <img src="./img/logo_bca.png" alt="Bank BCA" className="img-fluid mb-3" />
-            <h5>No. Rekening: 3160142251</h5>
-            <p className="text-muted">a.n. Alvinuril Nezar Patria</p>
-            <button
-              className={`btn button-brown ${copied ? "copied" : ""}`}
-              onClick={copyToClipboard}
-              onTouchStart={copyToClipboard}
-            >
-              {copied ? "Berhasil Disalin" : "Salin No. Rekening"}
-            </button>
+          <div
+            className="row mt-4 animated-card"
+            style={{ maxWidth: "800px", margin: "0 auto" }}
+          >
+            {/* Kartu Rekening 1 */}
+            <div className="col-6">
+              <div className="card p-4 shadow" style={{ background: "#e8d4cc" }}>
+                <img
+                  src="./img/logo_bca.png"
+                  alt="Bank BCA"
+                  className="img-fluid mb-3"
+                />
+                <h6>No. Rekening: 3160142251</h6>
+                <p className="text-muted">a.n. Alvinuril Nezar Patria</p>
+                <button
+                  className={`btn button-brown ${copied === "3160142251" ? "copied" : ""
+                    }`}
+                  onClick={() => copyToClipboard("3160142251")}
+                >
+                  {copied === "3160142251"
+                    ? "Berhasil Disalin"
+                    : "Salin No. Rekening"}
+                </button>
+              </div>
+            </div>
+
+            {/* Kartu Rekening 2 */}
+            <div className="col-6">
+              <div className="card p-4 shadow" style={{ background: "#e8d4cc" }}>
+                <img
+                  src="./img/logo_bca.png"
+                  alt="Bank BCA"
+                  className="img-fluid mb-3"
+                />
+                <h6>No. Rekening: 1230914407</h6>
+                <p className="text-muted">a.n. Zairotul Auliya</p>
+                <button
+                  className={`btn button-brown ${copied === "1230914407" ? "copied" : ""
+                    }`}
+                  onClick={() => copyToClipboard("1230914407")}
+                >
+                  {copied === "1230914407"
+                    ? "Berhasil Disalin"
+                    : "Salin No. Rekening"}
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>
